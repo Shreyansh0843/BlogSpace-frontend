@@ -1,3 +1,4 @@
+const API_URL = import.meta.env.VITE_API_URL;
 import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +8,7 @@ import { toast } from 'react-toastify';
 import { setCredentials, setError } from '../features/auth/authSlice';
 import axios from 'axios';
 import Footer from "../components/Footer"
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const Login = () => {
     }),
     onSubmit: async (values, {setSubmitting}) => {
       try {
-        const res = await axios.post('http://localhost:5000/api/auth/login', values, {
+        const res = await axios.post(`${API_URL}/api/auth/login`, values, {
           withCredentials: true,
         });
         dispatch(setCredentials(res.data));
