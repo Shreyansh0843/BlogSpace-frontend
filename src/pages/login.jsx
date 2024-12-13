@@ -38,6 +38,9 @@ const Login = () => {
       try {
         const res = await axios.post(`${API_URL}/api/auth/login`, values, {
           withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
         dispatch(setCredentials(res.data));
         toast.success('Login successful!');
